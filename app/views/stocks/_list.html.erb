@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-10 mx-auto">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Ticker</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @tracked_stocks.each do |record| %>
+            <tr>
+                <td><%= record.ticker %></td>
+                <td><%= record.name %></td>
+                <td><%= record.last_price %></td>
+                <td>Actions</td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    </div>
+</div>
