@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'welcome#index'
+  root 'users#my_portfolio'
+  get 'search_stock', to: 'stocks#search'
 end
