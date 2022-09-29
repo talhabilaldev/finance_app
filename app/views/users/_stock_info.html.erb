@@ -4,8 +4,8 @@
     </div>
 </div>
 <% if @stock %>
-    <div class="card card-body col-6 mb-3 p-0">
-        <table class="table mb-0">
+    <div class="card card-body col-lg-6 mb-3 p-0 mx-auto">
+        <table class="table mb-2">
             <tbody>
                 <tr>
                     <th class="border-top-0"><em>Symbol</em></th>
@@ -16,10 +16,23 @@
                     <td><%= @stock.name %></td>
                 </tr>
                 <tr>
-                    <th>Latest Price</th>
-                    <td><%= @stock.last_price %></td>
+                    <th class="table_border_botttom">Latest Price</th>
+                    <td class="table_border_botttom"><%= @stock.last_price %></td>
                 </tr>
             </tbody>
         </table>
+        <% if current_user.can_track_stock?(@stock.ticker) %>
+            <%= link_to user_stocks_path(ticker: @stock.ticker), { class: 'btn btn-info col-2 mx-auto mb-2' , method: :post, title: "Add stock to portfolio" } do %>
+                <i class="fa fa-heart-o"></i>
+            <% end %>
+        <% else %>
+            <span class="col-auto mx-auto badge badge-secondary p-2 mb-2">You are already tracking
+            <% if !current_user.under_stock_limit? %>
+                10 stocks.
+            <% elsif current_user.stock_already_tracked?(@stock.ticker) %>
+                this stock.
+            <% end %>
+            </span>
+        <% end %>
     </div>
 <% end %>

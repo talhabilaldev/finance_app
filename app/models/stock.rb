@@ -13,4 +13,8 @@ class Stock < ApplicationRecord
             return false
         end
     end
+
+    def self.check_db(ticker_symbol)
+        where(ticker: ticker_symbol).first #Stock. is exempted because we are already in Stock class
+    end
 end
