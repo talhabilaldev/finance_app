@@ -6,6 +6,13 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <% if user_signed_in? %>
+                    <li class="nav-item"><%= link_to 'Portfolio', my_portfolio_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to 'Friends', my_friends_path, class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to 'Profile', edit_user_registration_path, class: "nav-link" %></li>
+                <% end %>
+            </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
@@ -18,7 +25,6 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <% if user_signed_in? %>
-                        <%= link_to 'Profile', edit_user_registration_path, class: "dropdown-item" %>
                         <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
                     <% else %>
                         <%= link_to 'Login', new_user_session_path, class: "dropdown-item" %>

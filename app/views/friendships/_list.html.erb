@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-10 mx-auto">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @friends.each do |record| %>
+            <tr>
+                <td><%= record.first_name %></td>
+                <td><%= record.last_name %></td>
+                <td><%= record.email %></td>
+                <td>Actions</td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    </div>
+</div>
