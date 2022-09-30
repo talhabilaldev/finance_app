@@ -43,4 +43,8 @@ class User < ApplicationRecord
   def self.query(field, param, uid)
     where("#{field} LIKE ? AND id NOT LIKE ?","%#{param}%","#{uid}")
   end
+
+  def friends_with?(friend_id)
+    self.friends.where(id: friend_id).exists?
+  end
 end

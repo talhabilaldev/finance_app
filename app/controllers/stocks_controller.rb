@@ -1,6 +1,6 @@
 class StocksController < ApplicationController
     def search
-        str = params[:friend]
+        str = params[:stock]
         if(str.present?)
             @stock = Stock.new_lookup(str)
             if @stock
