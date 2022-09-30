@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-8 mx-auto">
+        <%= render 'layouts/flashMessages' %>
+    </div>
+</div>
+<% if @friends.count>0 %>
+    <div class="card card-body col-lg-6 mb-3 p-0 mx-auto">
+        <table class="table mb-2">
+            <thead>
+                <tr>
+                    <th class="border-top-0">Name</th>
+                    <th class="border-top-0">Email</th>
+                    <th class="border-top-0">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @friends.each do |record| %>
+                <tr>
+                    <td><%= record.full_name %></td>
+                    <td><%= record.email %></td>
+                    <td><%= link_to user_friendships_path(@friend), { class: 'btn btn-info mb-2' , method: :post, title: "Add as friend" } do %>
+                        <i class="fa fa-user-plus"></i>
+                        <% end %>
+                    </td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+<% end %>

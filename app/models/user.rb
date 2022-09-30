@@ -24,4 +24,23 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def self.search_user(param, uid)
+    param.strip!
+    result = (by_first_name(param, uid) + by_last_name(param, uid) + by_email(param, uid)).uniq
+    return nil unless result
+    result
+  end
+  def self.by_first_name(param, uid)
+    query('first_name',param, uid)
+  end
+  def self.by_last_name(param, uid)
+    query('last_name',param, uid)
+  end
+  def self.by_email(param, uid)
+    query('email',param, uid)
+  end
+  def self.query(field, param, uid)
+    where("#{field} LIKE ? AND id NOT LIKE ?","%#{param}%","#{uid}")
+  end
 end

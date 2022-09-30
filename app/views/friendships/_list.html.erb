@@ -15,7 +15,9 @@
                 <td><%= record.first_name %></td>
                 <td><%= record.last_name %></td>
                 <td><%= record.email %></td>
-                <td>Actions</td>
+                <td class="text-center">
+                <%= link_to '<i class="fa fa-remove"></i>'.html_safe, user_friendship_path(record), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' } %>
+                </td>
             </tr>
             <% end %>
         </tbody>

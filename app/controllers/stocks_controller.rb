@@ -1,7 +1,8 @@
 class StocksController < ApplicationController
     def search
-        if(params[:stock].present?)
-            @stock = Stock.new_lookup(params[:stock])
+        str = params[:friend]
+        if(str.present?)
+            @stock = Stock.new_lookup(str)
             if @stock
                 respond_to do |format|
                     format.js { render partial: 'users/stock_info'}
