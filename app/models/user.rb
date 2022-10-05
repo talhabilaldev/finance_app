@@ -1,7 +1,8 @@
 class User < ApplicationRecord
-  has_many :user_stocks
+  has_many :user_stocks, dependent: :destroy
   has_many :stocks, through: :user_stocks
-  has_many :friendships
+  has_many :friendships, dependent: :destroy
+  has_many :rev_friendships, dependent: :destroy, class_name: "Friendship", foreign_key: "friend_id"
   has_many :friends, through: :friendships
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -41,7 +42,7 @@ class User < ApplicationRecord
     query('email',param, uid)
   end
   def self.query(field, param, uid)
-    where("#{field} ILIKE ? AND id != ?","%#{param}%","#{uid}")
+    where("#{field} LIKE ? AND id != ?","%#{param}%","#{uid}")
   end
 
   def friends_with?(friend_id)
